@@ -2,10 +2,6 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
 const pizzaProductsDB = [
     {
         "product_id": "PZ99281A12",
@@ -808,7 +804,7 @@ const pizzaProductsDB = [
         "store_id": "4d650d59"
     }
 ]
-console.log('APP STARTED');
+
 // Define a simple GET route
 app.get('/api/greeting', (req, res) => {
     res.json({ message: 'Hello, world!' });
@@ -828,7 +824,12 @@ app.get('/api/pizzas', (req, res) => {
     // Fetch from "DB"
     let products = pizzaProductsDB.filter(
         (pizza) => pizza.store_id === store_id
-    );
+    ).map(pizza => ({
+    id: pizza.id,
+    name: pizza.name,
+    price: pizza.price,
+    is_available: pizza.is_available
+  }));
 
     // Optional filter
     if (is_available !== undefined) {
