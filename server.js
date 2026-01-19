@@ -2,6 +2,10 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
 const pizzaProductsDB = [
     {
         "product_id": "PZ99281A12",
@@ -804,7 +808,7 @@ const pizzaProductsDB = [
         "store_id": "4d650d59"
     }
 ]
-
+console.log('APP STARTED');
 // Define a simple GET route
 app.get('/api/greeting', (req, res) => {
     res.json({ message: 'Hello, world!' });
