@@ -825,10 +825,10 @@ app.get('/api/pizzas', (req, res) => {
     let products = pizzaProductsDB.filter(
         (pizza) => pizza.store_id === store_id
     ).map(pizza => ({
-    id: pizza.id,
-    name: pizza.name,
+    id: pizza.product_id,
+    name: pizza.pizza_name,
     price: pizza.price,
-    is_available: pizza.is_available
+    description: pizza.description_of_pizza
   }));
 
     // Optional filter
