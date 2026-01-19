@@ -824,12 +824,7 @@ app.get('/api/pizzas', (req, res) => {
     // Fetch from "DB"
     let products = pizzaProductsDB.filter(
         (pizza) => pizza.store_id === store_id
-    ).map(pizza => ({
-    id: pizza.product_id,
-    name: pizza.pizza_name,
-    price: pizza.price,
-    description: pizza.description_of_pizza
-  }));
+    );
 
     // Optional filter
     if (is_available !== undefined) {
@@ -838,7 +833,13 @@ app.get('/api/pizzas', (req, res) => {
             (pizza) => pizza.is_active === availability
         );
     }
-
+    
+products = products.map(pizza => ({
+        id: pizza.product_id,
+        name: pizza.pizza_name,
+        price: pizza.price,
+        description: pizza.description_of_pizza
+    }))
     res.json({
         status : 'success',        
         store_id,
