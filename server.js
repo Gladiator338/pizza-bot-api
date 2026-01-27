@@ -2,40 +2,102 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const { loadPizzaFromCsv } = require('./utils/loadPizzaFromCsv');
+const { handleRequest } = require('./utils/signatureVerification');
+
+app.use(express.json());
+
+/* ============================
+   In-memory DB + Indexes
+============================ */
 
 let pizzaCache = [];
-const storeIndex = {};
+let storeIndex = {}; // { store_id: [pizzas...] }
 
-async function initPizzaData() {
-    pizzaCache = await loadPizzaFromCsv();
-    console.log(`Loaded ${pizzaCache.length} pizzas into memory`);
+/* ============================
+   Init Loader
+============================ */
+
+async function initData() {
+    try {
+        pizzaCache = await loadPizzaFromCsv();
+
+        // Build store index (O(1) lookups)
+        storeIndex = {};
+        for (const pizza of pizzaCache) {
+            if (!storeIndex[pizza.store_id]) {
+                storeIndex[pizza.store_id] = [];
+            }
+            storeIndex[pizza.store_id].push(pizza);
+        }
+
+        console.log("🚀 Pizza DB initialized");
+        console.log("Stores indexed:", Object.keys(storeIndex).length);
+    } catch (err) {
+        console.error("🔥 Failed to initialize data:", err);
+        process.exit(1); // fail fast
+    }
 }
- 
-initPizzaData().then(() => {
-    console.log('pizzaCache:', pizzaCache.length);
-    console.log('First pizza:', pizzaCache[0]);
-    pizzaCache.forEach(p => {
-        if (!storeIndex[p.store_id]) storeIndex[p.store_id] = [];
-        storeIndex[p.store_id].push(p);
-    });
 
-    console.log('storeIndex keys:', Object.keys(storeIndex));
-}).catch(err => {
-    console.error('Error initializing pizza data:', err);
+initData();
+
+/* ============================
+   Health Check
+============================ */
+
+app.get('/health', (req, res) => {
+    res.json({
+        status: 'ok',
+        pizzas_loaded: pizzaCache.length,
+        stores: Object.keys(storeIndex).length,
+        uptime: process.uptime()
+    });
 });
 
-// Define receive Webhook route
+/* ============================
+   Webhook Receiver
+============================ */
 
-app.get('/receive', (req, res) => {
+app.post('/receive', (req, res) => {
+
+    handleRequest(req).then(response => {
+        const isValid = response.ok;
+        if (!isValid) {
+            console.log("❌ Invalid signature");
+
+            return res.status(401).json({
+                status: 'failure',
+                error: 'Invalid signature'
+            });
+        }
+
+        console.log("✅ Signature verified");
+
+        // Further processing can be done here
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Webhook received and verified'
+        });
+    }).catch(err => {
+        console.error("🔥 Error during signature verification:", err);
+        res.status(500).json({
+            status: 'failure',
+            error: 'Internal server error'
+        });
+    });
+});
+
+/* ============================
+   Client Token Protected Route
+============================ */
+
+app.post('/protected-webhook', (req, res) => {
+
     const clientToken = req.headers['client-token'];
-    const query = req.query;
-
-    console.log('Received webhook:');
-    console.log('Client Token:', clientToken);
-    console.log('Query Parameters:', query);
-    console.log('Body:', req.body);
 
     if (!clientToken) {
+        console.log("❌ Missing client-token header");
+
         return res.status(401).json({
             status: 'failure',
             error: 'client-token header is required'
@@ -48,16 +110,22 @@ app.get('/receive', (req, res) => {
     });
 });
 
-// Define a simple GET route
+
+/* ============================
+   API Routes
+============================ */
+
 app.get('/api/greeting', (req, res) => {
     res.json({ message: 'Hello, world!' });
 });
 
-// Define the /api/pizzas endpoint
-app.get('/api/pizzas', async (req, res) => {
+/*
+   GET /api/pizzas?store_id=123&is_available=true
+*/
+app.get('/api/pizzas', (req, res) => {
     const { store_id, is_available } = req.query;
 
-    // Mandatory validation
+    /* ---------- Validation ---------- */
     if (!store_id) {
         return res.status(400).json({
             status: 'failure',
@@ -65,39 +133,50 @@ app.get('/api/pizzas', async (req, res) => {
         });
     }
 
-    // Load pizza data from CSV
-    const pizzaProductsDB = pizzaCache
-    console.log('Pizza data loaded successfully.');
+    /* ---------- Data Fetch ---------- */
+    let products = storeIndex[store_id];
 
-
-    let products = storeIndex[store_id] || [];
-    console.log(`Found ${products.length} pizzas for store_id: ${store_id}`);
-
-    // Optional filter
-    console.log('is_available:', is_available);
-    if (is_available !== undefined) {
-        const availability = is_available.toLocaleLowerCase();
-        products = products.filter(
-            (pizza) => pizza.is_active === availability
-        );
+    if (!products) {
+        return res.json({
+            status: 'success',
+            store_id,
+            count: 0,
+            products: []
+        });
     }
 
-    // Format the response
-    products = products.map(pizza => ({
+    /* ---------- Filters ---------- */
+    if (typeof is_available === 'string') {
+        const availability = is_available.toLowerCase();
+        if (availability === 'true' || availability === 'false') {
+            products = products.filter(
+                (pizza) => pizza.is_active === availability
+            );
+        }
+    }
+
+    /* ---------- Response Mapping ---------- */
+    const response = products.map(pizza => ({
         id: pizza.product_id,
         name: pizza.pizza_name,
         price: pizza.price,
-        description: pizza.description_of_pizza
-    }))
+        description: pizza.description_of_pizza,
+        is_active: pizza.is_active,
+        store_id: pizza.store_id
+    }));
 
     res.json({
         status: 'success',
         store_id,
-        count: products.length,
-        products
+        count: response.length,
+        products: response
     });
 });
 
+/* ============================
+   Server Start
+============================ */
+
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`✅ Server running on http://localhost:${PORT}`);
 });
