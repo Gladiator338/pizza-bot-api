@@ -10,7 +10,7 @@ async function initPizzaData() {
     pizzaCache = await loadPizzaFromCsv();
     console.log(`Loaded ${pizzaCache.length} pizzas into memory`);
 }
-
+ 
 initPizzaData().then(() => {
     console.log('pizzaCache:', pizzaCache.length);
     console.log('First pizza:', pizzaCache[0]);
