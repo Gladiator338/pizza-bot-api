@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
-const { loadPizzaFromCsv, pizzas: pizzaProductsDB } = require('./Utils/loadPizzaFromCsv');
+const { loadPizzaFromCsv, pizzas: pizzaProductsDB } = require('./utils/loadPizzaFromCsv');
 
 // Load pizza data from CSV before starting the server
 loadPizzaFromCsv()
