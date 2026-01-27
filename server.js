@@ -1,36 +1,47 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
-const { loadPizzaFromCsv, pizzas: pizzaProductsDB } = require('./utils/loadPizzaFromCsv');
+const { loadPizzaFromCsv } = require('./utils/loadPizzaFromCsv');
 
-// Load pizza data from CSV before starting the server
-loadPizzaFromCsv()
-    .then(() => {
-        console.log('Pizza data loaded successfully.');
-    })
-    .catch((error) => {
-        console.error('Error loading pizza data:', error);
-    });     
+let pizzaCache = [];
+const storeIndex = {};
 
+async function initPizzaData() {
+    pizzaCache = await loadPizzaFromCsv();
+    console.log(`Loaded ${pizzaCache.length} pizzas into memory`);
+}
+
+initPizzaData().then(() => {
+    console.log('pizzaCache:', pizzaCache.length);
+    console.log('First pizza:', pizzaCache[0]);
+    pizzaCache.forEach(p => {
+        if (!storeIndex[p.store_id]) storeIndex[p.store_id] = [];
+        storeIndex[p.store_id].push(p);
+    });
+
+    console.log('storeIndex keys:', Object.keys(storeIndex));
+}).catch(err => {
+    console.error('Error initializing pizza data:', err);
+});
 
 // Define receive Webhook route
 
 app.get('/receive', (req, res) => {
     const clientToken = req.headers['client-token'];
     const query = req.query;
-    
+
     console.log('Received webhook:');
     console.log('Client Token:', clientToken);
     console.log('Query Parameters:', query);
     console.log('Body:', req.body);
-    
+
     if (!clientToken) {
         return res.status(401).json({
             status: 'failure',
             error: 'client-token header is required'
         });
     }
-    
+
     res.status(200).json({
         status: 'success',
         message: 'Webhook received'
@@ -43,7 +54,7 @@ app.get('/api/greeting', (req, res) => {
 });
 
 // Define the /api/pizzas endpoint
-app.get('/api/pizzas', (req, res) => {
+app.get('/api/pizzas', async (req, res) => {
     const { store_id, is_available } = req.query;
 
     // Mandatory validation
@@ -54,14 +65,18 @@ app.get('/api/pizzas', (req, res) => {
         });
     }
 
-    // Filter pizzas by store_id
-    let products = pizzaProductsDB.filter(
-        (pizza) => pizza.store_id === store_id
-    );
+    // Load pizza data from CSV
+    const pizzaProductsDB = pizzaCache
+    console.log('Pizza data loaded successfully.');
+
+
+    let products = storeIndex[store_id] || [];
+    console.log(`Found ${products.length} pizzas for store_id: ${store_id}`);
 
     // Optional filter
+    console.log('is_available:', is_available);
     if (is_available !== undefined) {
-        const availability = is_available === 'true';
+        const availability = is_available.toLocaleLowerCase();
         products = products.filter(
             (pizza) => pizza.is_active === availability
         );
@@ -74,7 +89,7 @@ app.get('/api/pizzas', (req, res) => {
         price: pizza.price,
         description: pizza.description_of_pizza
     }))
-    
+
     res.json({
         status: 'success',
         store_id,
