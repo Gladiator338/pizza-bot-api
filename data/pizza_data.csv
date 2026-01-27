@@ -1,0 +1,101 @@
+product_id,pizza_name,price,is_active,description_of_pizza,store_id
+PZ99281A12,Margherita,499,TRUE,"Fresh mozzarella, San Marzano tomatoes, fresh basil, and EVOO.",3c32fe11
+PZ88172B23,Double Pepperoni,649,FALSE,A double layer of crispy curled pepperoni with extra mozzarella.,3c32fe11
+PZ77653C34,Garden Veggie,549,TRUE,"Broccoli, corn, red onions, and diced tomatoes.",3c32fe11
+PZ11221D45,Meat Lovers,899,TRUE,"Pepperoni, Italian sausage, bacon, ham, and ground beef.",1c07dd73
+PZ22332E56,Meatball Parm,749,FALSE,"Homemade meatballs, marinara, and extra mozzarella.",1c07dd73
+PZ33443F67,Salami Sensation,799,TRUE,Three types of Italian salami with red pepper strips.,1c07dd73
+PZ44554G78,Bacon Cheeseburger,725,TRUE,"Ground beef, bacon, cheddar, and pickles.",1c07dd73
+PZ55665H89,Philly Cheesesteak,849,FALSE,"Shaved steak, onions, peppers, and cheese whiz.",1c07dd73
+PZ66776I90,Pulled Pork,749,TRUE,"Slow-cooked pork, coleslaw topper, and BBQ sauce.",1c07dd73
+PZ77887J01,Pastrami on Rye,799,TRUE,Pastrami with Swiss cheese and mustard on a dough base.,1c07dd73
+PZ88998K12,The Works,949,TRUE,"Pepperoni, sausage, bell peppers, onions, and black olives.",1c07dd73
+PZ99009L23,Inferno,699,FALSE,"Habaneros, spicy sausage, and Satan’s Breath chili oil.",160c9c26
+PZ10110M34,Jalapeño Popper,599,TRUE,"Cream cheese base, jalapeños, bacon, and cheddar.",160c9c26
+PZ21221N45,Peri-Peri Chicken,749,TRUE,Spicy bird’s eye chili chicken with flame-grilled peppers.,160c9c26
+PZ32332O56,Spicy Paneer,649,FALSE,"Marinated paneer cubes, capsicum, and spicy red gravy.",160c9c26
+PZ43443P67,Hot Honey Sopressata,899,TRUE,Spicy Italian salami drizzled with habanero honey.,160c9c26
+PZ54554Q78,Garlic Butter Shrimp,999,TRUE,Shrimp sautéed in garlic and parsley.,6b2fe722
+PZ65665R89,Clam Pie,1049,FALSE,"Fresh clams, garlic, oregano, and pecorino.",6b2fe722
+PZ76776S90,Truffle Mushroom,949,TRUE,Shiitake and portobello mushrooms with truffle oil.,8fcce746
+PZ87887T01,Spinach & Ricotta,699,TRUE,Sautéed spinach topped with dollops of creamy ricotta.,8fcce746
+PZ98998U12,Quattro Formaggi,799,FALSE,A blend of Mozzarella Gorgonzola Parmesan and Fontina.,8fcce746
+PZ09009V23,Pear & Gorgonzola,849,TRUE,"Sliced pears, blue cheese, and toasted walnuts.",8fcce746
+PZ10120W34,Brie & Cranberry,899,TRUE,Melting brie cheese with tart cranberry sauce.,8fcce746
+PZ21231X45,Camembert Special,949,FALSE,"Camembert slices, caramelized onions, and balsamic.",8fcce746
+PZ32342Y56,Korean Bulgogi,999,TRUE,"Ribeye beef, kimchi, scallions, and gochujang sauce.",88fa832a
+PZ43453Z67,Thai Chili,849,TRUE,"Sweet chili sauce, shrimp, scallions, and crushed peanuts.",88fa832a
+PZ54564A78,Mexican Fiesta,799,FALSE,"Chorizo, corn, jalapeños, and fresh pico de gallo.",88fa832a
+PZ65675B89,Greek Gyro,849,TRUE,"Lamb meat, tzatziki sauce, tomatoes, and onions.",88fa832a
+PZ76786C90,Chicken Satay,749,TRUE,"Peanut sauce, chicken, and pickled cucumbers.",88fa832a
+PZ87897D01,Al Pastor,849,FALSE,"Marinated pork, pineapple, and fresh cilantro.",88fa832a
+PZ98908E12,Peking Duck,1199,TRUE,"Hoisin sauce, duck, and cucumber slivers.",88fa832a
+PZ09019F23,Banh Mi,899,TRUE,"Pork belly, pickled carrots, daikon, and jalapeños.",88fa832a
+PZ10130G34,German Bratwurst,749,FALSE,"Sliced bratwurst, sauerkraut, and mustard.",88fa832a
+PZ21241H45,Chicken Shawarma,799,TRUE,"Spiced chicken, tahini drizzle, and pickles.",88fa832a
+PZ32352I56,BBQ Chicken,699,TRUE,"Grilled chicken, red onions, cilantro, and smoky BBQ sauce.",9d61ada6
+PZ43463J67,Buffalo Chicken,699,TRUE,"Spicy buffalo sauce, chicken, and ranch drizzle.",9d61ada6
+PZ54574K78,Chicken Alfredo,749,FALSE,"Creamy white sauce, grilled chicken, and spinach.",9d61ada6
+PZ65685L89,Pesto Chicken,749,TRUE,"Basil pesto base, chicken, and sun-dried tomatoes.",9d61ada6
+PZ76796M90,Mediterranean,649,TRUE,"Feta cheese, spinach, olives, and sun-dried tomatoes.",a7d43f27
+PZ87807N01,Roasted Root,699,FALSE,"Roasted sweet potatoes, beets, and goat cheese.",a7d43f27
+PZ98918O12,Zucchini Blossom,799,TRUE,Fresh zucchini flowers and lemon zest on a white base.,a7d43f27
+PZ09029P23,Pumpkin & Sage,749,TRUE,"Roasted pumpkin, fried sage, and caramelized onions.",a7d43f27
+PZ10140Q34,The Vegan Greek,799,FALSE,"Vegan feta, olives, onions, and dairy-free mozzarella.",a7d43f27
+PZ21251R45,Artichoke Heart,699,TRUE,"Marinated artichokes, garlic, and baby spinach.",a7d43f27
+PZ32362S56,Miso Eggplant,749,TRUE,"Miso glaze, roasted eggplant, and nori strips.",a7d43f27
+PZ43473T67,Nutella & Strawberry,599,TRUE,Nutella base with fresh berries and powdered sugar.,738088a1
+PZ54584U78,S’mores,549,FALSE,"Chocolate ganache, marshmallows, and graham crackers.",738088a1
+PZ65695V89,Apple Pie,549,TRUE,"Spiced apples, cinnamon streusel, and caramel.",738088a1
+PZ76706W90,Banoffee,649,TRUE,"Banana slices, toffee sauce, and whipped cream.",738088a1
+PZ87817X01,Tiramisu,699,FALSE,Coffee-soaked crust with mascarpone and cocoa.,738088a1
+PZ98928Y12,Smoked Salmon,1199,TRUE,"Cream cheese, capers, onions, and smoked salmon.",ee34f45b
+PZ09039Z23,Lobster Roll Pizza,1899,TRUE,Butter-poached lobster and chives on a white base.,ee34f45b
+PZ10150A34,Calamari Fritti,949,FALSE,Lightly fried calamari on a spicy marinara base.,ee34f45b
+PZ21261B45,Seafood Paella,1299,TRUE,"Shrimp, mussels, and saffron-infused sauce.",ee34f45b
+PZ32372C56,Crab Cake Pizza,1199,TRUE,"Lump crab meat, Old Bay seasoning, and lemon.",ee34f45b
+PZ43483D67,Scallop & Bacon,1149,FALSE,Bay scallops with crispy bacon and cream sauce.,ee34f45b
+PZ54594E78,Marinara,399,TRUE,"Tomato sauce, garlic, oregano, and olive oil.",e074749e
+PZ65605F89,Hawaiian,599,TRUE,The classic ham and pineapple duo.,e074749e
+PZ76716G90,Five Cheese Explosion,749,TRUE,Mozzarella Cheddar Provolone Monterey Jack and Swiss.,fc1bfeee
+PZ87827H01,Burrata Bliss,949,FALSE,A whole burrata ball broken over a fresh Margherita.,fc1bfeee
+PZ98938I12,Cheesy Garlic Bread Pizza,549,TRUE,Double-garlic butter base with triple cheese.,fc1bfeee
+PZ09049J23,Smoked Gouda,699,TRUE,"Smoked gouda, roasted red peppers, and onions.",fc1bfeee
+PZ10160K34,Pecorino Romano,649,FALSE,Olive oil base with black pepper and Pecorino cheese.,fc1bfeee
+PZ21271L45,Breakfast Pizza,749,TRUE,"Scrambled eggs, bacon, sausage, and hashbrowns.",b4ce884a
+PZ32382M56,Maple Sausage,699,TRUE,Breakfast sausage with a maple syrup drizzle.,b4ce884a
+PZ43493N67,Apple & Bacon,749,FALSE,Thinly sliced apples with smoked bacon.,b4ce884a
+PZ54504O78,Truffle Mac & Cheese,849,TRUE,Elbow pasta and cheese sauce with truffle oil.,c4589666
+PZ65615P89,Taco Pizza,799,TRUE,"Taco beef, lettuce, crushed Doritos, and salsa.",c4589666
+PZ76726Q90,Peach & Burrata,899,FALSE,"Seasonal peaches, burrata cheese, and prosciutto.",c4589666
+PZ87837R01,Fig & Prosciutto,949,TRUE,"Fresh figs, prosciutto di Parma, and balsamic glaze.",c4589666
+PZ98948S12,Mango Tango,799,TRUE,Spicy chicken and fresh mango chunks with red onion.,c4589666
+PZ09059T23,Honey & Goat Cheese,849,FALSE,Creamy goat cheese topped with wild honey and rosemary.,c4589666
+PZ10170U34,Nashville Hot,799,TRUE,Fried chicken tossed in hot oil with pickle chips.,47d6eed8
+PZ21281V45,Cajun Chicken,749,TRUE,"Blackened chicken, andouille sausage, and peppers.",47d6eed8
+PZ32392W56,Chili Con Carne,699,FALSE,"Hearty beef chili, onions, and sharp cheddar.",47d6eed8
+PZ43403X67,Angry Shrimp,949,TRUE,"Chili-marinated shrimp, garlic, and pepper flakes.",47d6eed8
+PZ54514Y78,Napoletana,649,TRUE,"Anchovies, capers, and black olives.",1952f231
+PZ65625Z67,Capricciosa,799,FALSE,"Ham, mushrooms, artichokes, and olives.",1952f231
+PZ76736A78,Prosciutto e Funghi,749,TRUE,Cooked ham and earthy button mushrooms.,1952f231
+PZ87847B89,Diavola,699,TRUE,"Spicy salami, chili flakes, and hot honey.",1952f231
+PZ98958C90,Eggplant Parm,649,FALSE,"Fried eggplant, parmesan, and extra tomato sauce.",1952f231
+PZ09069D01,Duck L’Orange,1199,TRUE,"Roasted duck, orange zest, and scallions.",8f5eb989
+PZ10180E12,Doner Kebab,799,TRUE,"Kebab meat, garlic sauce, and shredded lettuce.",8f5eb989
+PZ21291F23,Cubano,849,FALSE,"Roast pork, ham, Swiss cheese, and pickles.",8f5eb989
+PZ32302G34,Tropical Heat,649,TRUE,"Bacon, pineapple, and spicy jalapeños.",2b8b72d2
+PZ43413H45,Pear & Gorgonzola V2,749,TRUE,Sliced pears with blue cheese and toasted walnuts.,2b8b72d2
+PZ54524I56,Gorgonzola & Walnut,699,FALSE,Strong blue cheese balanced with honey and nuts.,2b8b72d2
+PZ65635J67,Blueberry Lemon,599,TRUE,Blueberry compote with lemon mascarpone.,2b8b72d2
+PZ76746K78,Cookies & Cream,549,TRUE,White chocolate and crushed Oreo pieces.,02a5f6c7
+PZ87857L89,Birthday Cake,549,FALSE,Frosting base with rainbow sprinkles and cake bits.,02a5f6c7
+PZ98968M90,Rocky Road,549,TRUE,"Chocolate, nuts, and marshmallows.",02a5f6c7
+PZ09079N01,PB & J,449,TRUE,Peanut butter base with grape jelly swirls.,02a5f6c7
+PZ10190O12,Chicken Bacon Ranch,749,FALSE,"Roast chicken, crispy bacon, and creamy ranch.",02a5f6c7
+PZ21201P23,Butter Chicken,799,TRUE,"Creamy makhani sauce, chicken, and coriander.",02a5f6c7
+PZ32312Q34,Teriyaki Chicken,699,TRUE,"Sweet soy-glaze chicken, pineapple, and sesame.",02a5f6c7
+PZ43423R45,Tandoori Chicken,749,TRUE,"Spiced tandoori chicken, green chilies, and mint.",02a5f6c7
+PZ54534S56,Anchovy Blast,549,FALSE,Extra salty anchovies with garlic and olives.,4d650d59
+PZ65645T67,Tuna & Onion,649,TRUE,Tuna chunks and red onions on a red base.,4d650d59
+PZ76756U78,Feta & Mint,599,TRUE,Refreshing feta cheese with fresh mint and cucumbers.,4d650d59
+PZ87867V89,Parmesan Crusted,699,TRUE,Crust baked in a layer of parmesan cheese.,4d650d59
