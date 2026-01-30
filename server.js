@@ -155,6 +155,7 @@ app.get('/api/pizzas', (req, res) => {
         }
     }
 
+    
     /* ---------- Response Mapping ---------- */
     const response = products.map(pizza => ({
         id: pizza.product_id,
